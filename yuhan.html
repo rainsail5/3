@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CD Player</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        .cd {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: url('00.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .cd.playing {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="cd" id="cd" onclick="togglePlay()"></div>
+    <audio id="midiAudio" src="yuhan.mp3"></audio>
+    <script>
+        const cd = document.getElementById('cd');
+        const audio = document.getElementById('midiAudio');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                cd.classList.add('playing');
+            } else {
+                audio.pause();
+                cd.classList.remove('playing');
+            }
+        }
+    </script>
+</body>
+
+</html>
